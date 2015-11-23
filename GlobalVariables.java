@@ -15,15 +15,15 @@ public class GlobalVariables {
 
 	public static String[] manufacturer;
 
-	public GlobalVariables() {
-		readPropertiesFile();
+	public void initializeGlobalVariables() {
+		initializeManufacturers();
 	}
 
 	/* Read Properties from properties file and initializes
 	 * and calls helper method addManufacturers for initializing
 	 * manufacturer array
 	 */
-	private void readPropertiesFile() {
+	private void initializeManufacturers() {
 		try {
 			File file = new File("GeneralProperties.properties");
 			FileInputStream fileInput = new FileInputStream(file);
