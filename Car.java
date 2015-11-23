@@ -4,7 +4,7 @@
  */
 public class Car {
 
-	private static double price;
+	private double price;
 	private int mileage;
 	private String modelName;
 	
@@ -24,7 +24,7 @@ public class Car {
 	 * @return price of this car object
 	 */
 
-	public static double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 

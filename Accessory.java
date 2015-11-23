@@ -13,8 +13,7 @@ public class Accessory {
     public Accessory(SEAT_COVERS seatCover, SPEAKERS carSpeaker, GPS carGps) {
     	covers = seatCover;
     	speaker = carSpeaker;
-    	gps = carGps;
-    
+    	gps = carGps;   
     }
 
 	public enum SEAT_COVERS{
