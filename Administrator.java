@@ -13,17 +13,22 @@ public class Administrator {
 	
 	private static File file;
 	private static Scanner reader;
+	private static ContactEditorUI ui;
 	private static final String carsData = ".//Car.txt";	
 
-	private String[] manufacturerNames = {"BMW",
+	private final String[]  manufacturerNames = {"BMW",
 			"NISSAN","CHEVORLET",
 			"HONDA","TOYOTA"};
+	private final String[] priceRanges = {"10,000 - 30,000",
+			"30,000 - 40,000","40,000 - 50,000"};
 	private static Manufacturer[] manufacturers;
+	
 
 	public Administrator() {
 		manufacturers = new Manufacturer[manufacturerNames.length];
 		addManufacturers();
 		addCars();
+		ui = new ContactEditorUI(manufacturerNames,priceRanges);
 	}
 
 	private void addManufacturers() {
