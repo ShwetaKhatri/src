@@ -8,9 +8,9 @@ import java.util.HashMap;
  */
 public abstract class Manufacturer {
 
-	private static String manufacturerName;
-	private static ArrayList<Car> cars;
-	private static HashMap<String,Accessory> accessories;
+	private String manufacturerName;
+	private ArrayList<Car> cars;
+	private HashMap<String,Accessory> accessories;
 	
 	public Manufacturer() {
 		cars = new ArrayList<Car>();

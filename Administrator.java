@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 /*
  * @author Shweta
- * Administrator class is responsible for adding/
- * removing cars from the showroom
+ * Administrator class is responsible for adding cars
+ * to the show room
  */
 public class Administrator {
 	
 	private static File file;
 	private static Scanner reader;
-	private static final String carsData = ".//src/Cars.txt";	
+	private static final String carsData = ".//Car.txt";	
 
 	private String[] manufacturerNames = {"BMW",
 			"NISSAN","CHEVORLET",
@@ -24,7 +24,6 @@ public class Administrator {
 		addManufacturers();
 		addCars();
 	}
-
 
 	private void addManufacturers() {
 		System.out.println("Added manufacturer BMW");
