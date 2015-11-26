@@ -42,4 +42,10 @@ public class Car {
 		return modelName;
 	}
 	
+	@Override
+	public String toString() {
+		return "Modelname :" + modelName + ", Price:" + price +
+				", Mileage:" + mileage;
+	}
+	
 }

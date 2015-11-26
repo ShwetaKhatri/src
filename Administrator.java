@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -17,7 +18,7 @@ public class Administrator {
 	private String[] manufacturerNames = {"BMW",
 			"NISSAN","CHEVORLET",
 			"HONDA","TOYOTA"};
-	private Manufacturer[] manufacturers;
+	private static Manufacturer[] manufacturers;
 
 	public Administrator() {
 		manufacturers = new Manufacturer[manufacturerNames.length];
@@ -33,33 +34,35 @@ public class Administrator {
 		
 		System.out.println("Added manufacturer Nissan");
 		Manufacturer nissan = new Nissan();
-		bmw.setManufacturerName("NISSAN");
+		nissan.setManufacturerName("Nissan");
 		manufacturers[1] = nissan;
 		
-		System.out.println("Added manufacturer Chevrolet");
+		System.out.println("Added manufacturer Chevorlet");
 		Manufacturer chevorlet = new Chevrolet();
-		bmw.setManufacturerName("CHEVROLET");
+		chevorlet.setManufacturerName("Chevorlet");
 		manufacturers[2] = chevorlet;
 		
 		System.out.println("Added manufacturer Honda");
 		Manufacturer honda = new Honda();
-		bmw.setManufacturerName("Honda");
+		honda.setManufacturerName("Honda");
 		manufacturers[3] = honda;
 		
 		System.out.println("Added manufacturer Toyota");
-		Manufacturer toyota = new Honda();
-		bmw.setManufacturerName("Toyota");
+		Manufacturer toyota = new Toyota();
+		toyota.setManufacturerName("Toyota");
 		manufacturers[4] = toyota;
 		
 	}
 
 	private void addCars(String line){
 		String[] data = line.split("#");
-		for(int i = 0; i <manufacturers.length ;i++) {
+		for(int i = 0; i < manufacturers.length ;i++) {		
 			if(data[0].equalsIgnoreCase(manufacturers[i].getManufacturerName())) {
 				Car car = new Car(data[1],Double.parseDouble(data[2]),Integer.parseInt(data[3]));
-				System.out.println("Adding car " + data[1] + " to manufacturer " + manufacturers[i].getManufacturerName());
+				System.out.println("Adding car " + car.toString() + " to manufacturer " + manufacturers[i].getManufacturerName());
 				manufacturers[i].addCar(car);
+			}
+			else{
 			}
 		}
 	}
@@ -68,8 +71,10 @@ public class Administrator {
 		try{
 			file = new File(carsData);
 			reader = new Scanner(new FileReader(file));
+			String line;
 			while(reader.hasNext()) {
-				addCars(reader.nextLine());
+				line = reader.nextLine();
+				addCars(line);
 			}		
 		}
 		catch(FileNotFoundException ex) {

@@ -85,4 +85,10 @@ public abstract class Manufacturer {
 			throw new NullPointerException("No such accessory offered by manufacturer.");
 		}
 	}
+	
+	public abstract void printCars();
+
+	public ArrayList<Car> getCars() {
+		return cars;
+	}
 }
