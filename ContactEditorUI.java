@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -18,21 +19,22 @@ import javax.swing.LayoutStyle;
 /**
  *
  * @author David
+ * @modified Shweta - Divided code into methods to make
+ * it more readable
  */
 public class ContactEditorUI extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	/**
 	 * Creates new form ContactEditorUI
 	 */
-	public ContactEditorUI(String[] manufacturerNames, String[] priceRanges ) {
-		this.manufacturerNames = manufacturerNames;
-		this.priceRanges = priceRanges;		
+	
+	public ContactEditorUI(Manufacturer[] manufacturer, String[] priceRanges ,String[] defaultResultList) {
+		this.manufacturer = manufacturer;
+		this.priceRanges = priceRanges;	
+		this.defaultResultList = defaultResultList;
 		initComponents();
-		launchUI();
 	}
 
 	/**
@@ -92,15 +94,24 @@ public class ContactEditorUI extends JFrame {
 		
 		jManufacturerComboBox.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jManufacturerComboBoxActionPerformed(evt);
+				String selectedItem = (String)jManufacturerComboBox.getSelectedItem();
+				setManufacturerSelected(selectedItem);
+
 			}
+
+			
 		});
+
 		jPriceComboBox.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jPriceComboBoxActionPerformed(evt);
 			}
 		});
 						
+	}
+	
+	private void setManufacturerSelected(String selectedItem) {
+		
 	}
 
 	/*
@@ -186,7 +197,11 @@ public class ContactEditorUI extends JFrame {
 	 * of Manufacturers
 	 */
 	public void setjManufacturerComboBox() {
-		jManufacturerComboBox.setModel(new DefaultComboBoxModel<String>(manufacturerNames));
+		String names[] = new String[manufacturer.length];
+		for(int i = 0; i< manufacturer.length;i++) {
+			names[i] = manufacturer[i].getManufacturerName();
+		}
+		jManufacturerComboBox.setModel(new DefaultComboBoxModel<String>(names));
 	}
 
 	/*
@@ -214,6 +229,7 @@ public class ContactEditorUI extends JFrame {
 		jUserNameTextField.setText("Username");
 		jPasswordField.setText("Password");
 		jLogin.setText("LogIn");
+		setjResultList(defaultResultList);
 		jResultPanel.setLayout(jResultAndLoginPanelLayout);
 		jResultScrollPane1.setViewportView(jResultList);
 		jResultAndLoginPanelLayout.setHorizontalGroup(
@@ -277,26 +293,30 @@ public class ContactEditorUI extends JFrame {
 	}
 	
 	
-	private void jManufacturerComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-		// TODO add your handling code here:
+	private void jManufacturerComboBoxActionPerformed(ActionEvent evt) {
+		//GEN-FIRST:event_jComboBox1ActionPerformed
+		String selectedItem = (String)jManufacturerComboBox.getSelectedItem();
+		
+		
+		
 	}//GEN-LAST:event_jComboBox1ActionPerformed
 
-	private void jPriceComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+	private void jPriceComboBoxActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_jComboBox2ActionPerformed
 
-	private void jSearchButtonButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+	private void jSearchButtonButtonActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_jButton1ActionPerformed
 
-	private void jUserNameTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+	private void jUserNameTextField1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
 		// TODO add your handling code here:
 	}//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void launchUI() {
+	public void launchUI() {
 		/* Set the Nimbus look and feel */
 		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -337,8 +357,8 @@ public class ContactEditorUI extends JFrame {
 	private javax.swing.JPanel jResultPanel;
 	private javax.swing.JPasswordField jPasswordField;
 	private javax.swing.JScrollPane jResultScrollPane1;
-	private String[] manufacturerNames;
+	private Manufacturer[] manufacturer;
 	private String[] priceRanges;
-	
+	private String[] defaultResultList;
 	// End of variables declaration//GEN-END:variables
 }

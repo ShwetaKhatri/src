@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -13,73 +12,38 @@ public class Administrator {
 	
 	private static File file;
 	private static Scanner reader;
-	private static ContactEditorUI ui;
 	private static final String carsData = ".//Car.txt";	
-
-	private final String[]  manufacturerNames = {"BMW",
-			"NISSAN","CHEVORLET",
-			"HONDA","TOYOTA"};
-	private final String[] priceRanges = {"10,000 - 30,000",
-			"30,000 - 40,000","40,000 - 50,000"};
-	private static Manufacturer[] manufacturers;
 	
-
-	public Administrator() {
-		manufacturers = new Manufacturer[manufacturerNames.length];
-		addManufacturers();
-		addCars();
-		ui = new ContactEditorUI(manufacturerNames,priceRanges);
-	}
-
-	private void addManufacturers() {
-		System.out.println("Added manufacturer BMW");
-		Manufacturer bmw = new BMW();
-		bmw.setManufacturerName("BMW");
-		manufacturers[0] = bmw;
-		
-		System.out.println("Added manufacturer Nissan");
-		Manufacturer nissan = new Nissan();
-		nissan.setManufacturerName("Nissan");
-		manufacturers[1] = nissan;
-		
-		System.out.println("Added manufacturer Chevorlet");
-		Manufacturer chevorlet = new Chevrolet();
-		chevorlet.setManufacturerName("Chevorlet");
-		manufacturers[2] = chevorlet;
-		
-		System.out.println("Added manufacturer Honda");
-		Manufacturer honda = new Honda();
-		honda.setManufacturerName("Honda");
-		manufacturers[3] = honda;
-		
-		System.out.println("Added manufacturer Toyota");
-		Manufacturer toyota = new Toyota();
-		toyota.setManufacturerName("Toyota");
-		manufacturers[4] = toyota;
-		
-	}
-
-	private void addCars(String line){
+	/*
+	 * @param line, line read from file
+	 * @param manufacturers, array representing manufacturers
+	 * add cars to manufacturers. 
+	 * Format of File is 
+	 * Manufacturer Name # Model Name # Price # Mileage 
+	 */
+	private void addCars(String line,Manufacturer[] manufacturers){
 		String[] data = line.split("#");
 		for(int i = 0; i < manufacturers.length ;i++) {		
 			if(data[0].equalsIgnoreCase(manufacturers[i].getManufacturerName())) {
 				Car car = new Car(data[1],Double.parseDouble(data[2]),Integer.parseInt(data[3]));
-				System.out.println("Adding car " + car.toString() + " to manufacturer " + manufacturers[i].getManufacturerName());
 				manufacturers[i].addCar(car);
 			}
 			else{
 			}
 		}
 	}
-	
-	private void addCars() {
+	/*
+	 * @param manufacturers, represents an array of manufacturer available in 
+	 * show room
+	 */
+	public void addCarsToManufacturersFromFile(Manufacturer[] manufacturers) {
 		try{
 			file = new File(carsData);
 			reader = new Scanner(new FileReader(file));
 			String line;
 			while(reader.hasNext()) {
 				line = reader.nextLine();
-				addCars(line);
+				addCars(line,manufacturers);
 			}		
 		}
 		catch(FileNotFoundException ex) {
