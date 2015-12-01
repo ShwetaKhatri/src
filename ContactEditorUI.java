@@ -26,6 +26,7 @@ public class ContactEditorUI extends JFrame {
 
 	
 	private static final long serialVersionUID = 1L;
+	private static int tester;
 	/**
 	 * Creates new form ContactEditorUI
 	 */
