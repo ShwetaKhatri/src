@@ -15,8 +15,7 @@ public class BMW extends Manufacturer {
 	public void printCars() {
 		for(int i =0 ; i< cars.size() ;i++) {
 			System.out.println(cars.get(i).toString());
-		}
-		
+		}		
 	}
 
 	

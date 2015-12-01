@@ -91,4 +91,27 @@ public abstract class Manufacturer {
 	public ArrayList<Car> getCars() {
 		return cars;
 	}
+	
+	public String[] getCarsDetails() {
+		String[] details = new String[cars.size()];
+		int i = 0;
+		for(Car car:cars) {
+			details[i++] = car.toString();
+		}
+		return details;
+	}
+	
+	public String[] getCarsInPriceRange(double startRange,double endRange) {
+		ArrayList<String> carsInRange = new ArrayList<String>(cars.size());
+		Car car;
+		for(int i = 0; i< cars.size(); i++) {
+			car = cars.get(i);
+			if(car.getPrice() >= startRange && 
+					car.getPrice() <= endRange) {
+				carsInRange.add(car.toString());
+			}
+		}
+		String[] arr = new String[carsInRange.size()];
+		return carsInRange.toArray(arr);		
+	}
 }
