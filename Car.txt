@@ -1,0 +1,25 @@
+BMW#750ixDrive#110541#25
+BMW#X4xDrive35i#50142#27
+BMW#Z4sDrive35is#68152#24
+BMW#Series320i#34171#36
+BMW#M6#133882#20
+Nissan#Altima#22500#39
+Nissan#Frontier#18190#23
+Nissan#Leaf#21510#107
+Nissan#Rouge#23240#33
+Nissan#Versa#11990#40
+Chevorlet#Colorado#27185#26
+Chevorlet#Sonic#14345#40
+Chevorlet#Malibu Limited#21625#34
+Chevorlet#Trax#21800#34
+Chevorlet#Volt#33170#42
+Honda#CR-V#22105#34
+Honda#Accord#23775#34
+Honda#Accord#24165#34
+Honda#Polit#31795#26
+Honda#Odyssey#33375#28
+Toyota#Corolla#17230#37
+Toyota#Prius C#19560#46
+Toyota#Camry#23070#35
+Toyota#Tacoma#25385#23
+Toyota#Camry hybrid#25715#35

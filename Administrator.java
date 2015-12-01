@@ -12,7 +12,7 @@ public class Administrator {
 	
 	private static File file;
 	private static Scanner reader;
-	private static final String carsData = ".//Car.txt";	
+	private static final String carsData = ".\\src\\Car.txt";	
 	
 	/*
 	 * @param line, line read from file
