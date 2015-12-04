@@ -16,7 +16,7 @@ public class CustomizeCar extends GeneralLayout {
 	private JButton jCancelButton;
 	private Car selectedCar;
 	
-	private ArrayList<Accessory> accessories;
+	private Accessory[] accessories;
 	
 	private static final String TITLE = "Customize your Car ";
 	private static String SUB_TITLE ;
@@ -55,13 +55,9 @@ public class CustomizeCar extends GeneralLayout {
 
 	@Override
 	public void optionsPanelLeftComboBoxActionPerformed(ActionEvent evt) {
-		String selectedItem = (String) getjOptionsPanelLeftComboBox().getSelectedItem();
-		for(int i = 0; i<accessories.size();i++) {
-			if(accessories.get(i).getName().equals(selectedItem)) {
-				setCenterList(accessories.get(i).getCurrentSelectedList());
-				break;
-			}
-		}
+		int selectedItem =  getjOptionsPanelLeftComboBox().getSelectedIndex();
+		Accessory accessory = Tester.getAccessories(selectedItem);
+		setCenterList(accessory.getAccessoriesDetails());
 	}
 
 	

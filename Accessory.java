@@ -10,12 +10,10 @@ public class Accessory {
     private ACCESSORY_TYPE name;
     private String type;
     private double price;
-    private  ArrayList<Accessory> currentSelectedArrayList;
+    private ArrayList<String> currentSelectedArrayList;
     
-    public Accessory(ACCESSORY_TYPE name ,String type, double price) {
+    public Accessory(ACCESSORY_TYPE name) {
     	this.name = name;
-    	this.type = type;
-    	this.price = price;
     	currentSelectedArrayList = new ArrayList<>();
     }
 
@@ -32,20 +30,16 @@ public class Accessory {
 	}
   
 	public void addTypes(String type, double price) {
-		
-	}
-	public void setCurrentSelectedAccessories(ArrayList<Accessory> currentSelectedArrayList) {
-		this.currentSelectedArrayList = currentSelectedArrayList;
-	}
-	
-	public ArrayList<Accessory>  getCurrentSelectedArrayList() {
-		return currentSelectedArrayList;
+	  	this.type = type;
+    	this.price = price;
+		String value = "Type :" + type + " Price :" + price;
+		currentSelectedArrayList.add(value);
 	}
 	
-	public String[] getCurrentSelectedList() {
+	public String[] getAccessoriesDetails() {
 		String[] items = new String[currentSelectedArrayList.size()];
 		for(int i = 0; i<currentSelectedArrayList.size();i++) {
-			items[i] = currentSelectedArrayList.get(i).toString();
+			items[i] = currentSelectedArrayList.get(i);
 		}
 		return items;
 	}

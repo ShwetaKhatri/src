@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Tester {
 
@@ -12,42 +13,50 @@ public class Tester {
 
 
 	private static Manufacturer[] manufacturers;
-	private static ArrayList<Accessory> accessories;
-
+	private static Accessory[] accessories;
 	private static String[] accessoriesTypes = {"Seat Covers", "gps", "Speaker"};
 
 	public Tester() {
 		manufacturers = new Manufacturer[manufacturerNames.length];
-		accessories = new ArrayList<Accessory>();
+		accessories = new Accessory[accessoriesTypes.length];
 		addManufacturers();
 		addAccessories();
 	}
 
 
 	public static void addAccessories() {
-	 	accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS, "Leather",200));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"CANVAS",200));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"CAMO",150));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"MESH",80));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"CAMO",150));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"NEOPRENE",200));
-
-		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER,"TWEETERS",300));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER, "SUPER_TWEETERS",500));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER,"MIDRANGE",250));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER, "WOOFERS",500));
-		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER, "SUB_WOOFERS",400));
-
-		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"GARMIN_NUVI_SERIES",500));
-		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"TOM_TOM_GO_SERIES",450));
-		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"MAGELLAN_ROAD_MATE_SERIES",600));
-		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"IN_DASH_GPS_UNIT",350));
+		
+	 	accessories[0]= new Accessory(ACCESSORY_TYPE.SEAT_COVERS);
+	 	accessories[0].addTypes("CANVAS",200);
+		accessories[0].addTypes("CAMO",150);
+		accessories[0].addTypes("MESH",80);
+		accessories[0].addTypes("CAMO",150);
+		accessories[0].addTypes("NEOPRENE",200);
+		
+		
+		accessories[1]=new Accessory(ACCESSORY_TYPE.SPEAKER);
+		accessories[1].addTypes("TWEETERS",300);
+		accessories[1].addTypes( "SUPER_TWEETERS",500);
+		accessories[1].addTypes("MIDRANGE",250);
+		accessories[1].addTypes( "WOOFERS",500);
+		accessories[1].addTypes( "SUB_WOOFERS",400);
+		
+		accessories[2] = new Accessory(ACCESSORY_TYPE.GPS);
+		accessories[2].addTypes("GARMIN_NUVI_SERIES",500);
+		accessories[2].addTypes("TOM_TOM_GO_SERIES",450);
+		accessories[2].addTypes("MAGELLAN_ROAD_MATE_SERIES",600);
+		accessories[2].addTypes("IN_DASH_GPS_UNIT",350);
+		
 
 	}
-	public static ArrayList<Accessory> getAccessories() {
+	
+	public static Accessory[] getAccessories() {
 		return accessories;
 	}
 
+	public static Accessory getAccessories(int i) {
+		return accessories[i];
+	}
 
 	public static String[] getAccessoriesTypes() {
 		return accessoriesTypes;
@@ -90,9 +99,7 @@ public class Tester {
 	}
 
 	public static String[] defaultAccessoriesToBeDisplayed() {
-		String[] seatCovers = accessories.get(0).getCurrentSelectedList();
-		System.out.println(seatCovers.toString());
-		return seatCovers;
+		return accessories[0].getAccessoriesDetails();
 	}
 
 	public Manufacturer[] getManufacturers() {
