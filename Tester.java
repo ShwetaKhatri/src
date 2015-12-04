@@ -1,18 +1,60 @@
+import java.util.ArrayList;
 
 public class Tester {
 
 	private static final String[]  manufacturerNames = {"BMW",
 			"NISSAN","CHEVORLET",
 			"HONDA","TOYOTA"};
-	private static final String[] priceRanges = {"10000-30000",
+	private static final String[] carPriceRange = {"10000-30000",
 			"30000-40000","40000-50000","All Ranges"};
-	
-	
-	private Manufacturer[] manufacturers;
+	private static final String[] accessorPriceRange = {"100-200","200-300","300-400",
+	"All Ranges"};
+
+
+	private static Manufacturer[] manufacturers;
+	private static ArrayList<Accessory> accessories;
+
+	private static String[] accessoriesTypes = {"Seat Covers", "gps", "Speaker"};
 
 	public Tester() {
 		manufacturers = new Manufacturer[manufacturerNames.length];
+		accessories = new ArrayList<Accessory>();
 		addManufacturers();
+		addAccessories();
+	}
+
+
+	public static void addAccessories() {
+	 	accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS, "Leather",200));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"CANVAS",200));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"CAMO",150));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"MESH",80));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"CAMO",150));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SEAT_COVERS,"NEOPRENE",200));
+
+		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER,"TWEETERS",300));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER, "SUPER_TWEETERS",500));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER,"MIDRANGE",250));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER, "WOOFERS",500));
+		accessories.add(new Accessory(ACCESSORY_TYPE.SPEAKER, "SUB_WOOFERS",400));
+
+		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"GARMIN_NUVI_SERIES",500));
+		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"TOM_TOM_GO_SERIES",450));
+		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"MAGELLAN_ROAD_MATE_SERIES",600));
+		accessories.add(new Accessory(ACCESSORY_TYPE.GPS,"IN_DASH_GPS_UNIT",350));
+
+	}
+	public static ArrayList<Accessory> getAccessories() {
+		return accessories;
+	}
+
+
+	public static String[] getAccessoriesTypes() {
+		return accessoriesTypes;
+	}
+
+	public static String[] getAccessoriesPriceRange() {
+		return accessorPriceRange;
 	}
 
 	private void addManufacturers() {
@@ -42,13 +84,15 @@ public class Tester {
 		manufacturers[4] = toyota;		
 	}
 
-	private String[] defaultResultDisplayed() {
-		String[] cars = new String[manufacturers.length];
-		for(int i =0; i< manufacturers.length; i++) {
-			cars[i] = manufacturerNames[i] + ":" +
-		manufacturers[i].getCars().get(0).toString();
-		}
-		return cars;
+	public static String[] defaultManufacturersToBeDiplayed() {
+		return manufacturers[0].getCarsDetails();
+
+	}
+
+	public static String[] defaultAccessoriesToBeDisplayed() {
+		String[] seatCovers = accessories.get(0).getCurrentSelectedList();
+		System.out.println(seatCovers.toString());
+		return seatCovers;
 	}
 
 	public Manufacturer[] getManufacturers() {
@@ -59,10 +103,9 @@ public class Tester {
 		Tester test = new Tester();
 		Administrator admin = new Administrator();
 		admin.addCarsToManufacturersFromFile(test.getManufacturers());
-		HomePage  ui =  new HomePage(test.getManufacturers(), priceRanges,
-			test.defaultResultDisplayed());	
+		HomePage  ui =  new HomePage(test.getManufacturers(), carPriceRange);	
 		ui.launchUI();		
-		
+
 
 	}
 

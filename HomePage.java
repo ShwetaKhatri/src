@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -21,7 +22,7 @@ public class HomePage extends GeneralLayout {
 	private JButton jLogin;
 
 
-	public HomePage(Manufacturer[] carManufacturer, String[] prices, String[] defaultResultToBeDisplayed) {
+	public HomePage(Manufacturer[] carManufacturer, String[] prices) {
 		manufacturer = carManufacturer;
 		priceRanges = prices;
 		jUserNameTextField =  new JTextField("Username");
@@ -30,8 +31,8 @@ public class HomePage extends GeneralLayout {
 		
 		drawHeader(TITLE, SUB_TITLE);
 		drawTop(TOP_LEFT_LABEL, TOP_RIGHT_LABEL, getLeftComboBoxData(), getRightComboBoxData());
-		drawCenter(defaultResultToBeDisplayed);
-		add(addBottom());
+		drawCenter(defaultResultToBeDisplayed());
+		drawBottom();
 		jLogin.addActionListener(new ActionListener() {
 			boolean adminUiOpen = false;
 			@Override
@@ -86,8 +87,16 @@ public class HomePage extends GeneralLayout {
 
 	@Override
 	public void jOnDoubleClickListItemActionPerformed(Object elementClicked) {
-		AccessoriesUI ui = new AccessoriesUI();
-		ui.launchAccessoriesUI();		
+		String value = (String)elementClicked;
+		String selectedItem = (String)getjOptionsPanelLeftComboBox().getSelectedItem();
+		Manufacturer manufacturer = getManufacturerFromString(selectedItem);
+		ArrayList<Car> cars = manufacturer.getCars();
+		for(int i =0; i<cars.size();i++) {
+			if(value.equals(cars.get(i).toString())) {
+				CustomizeCar ui = new CustomizeCar(selectedItem,cars.get(i));
+				ui.launchUI();
+			}
+		}		
 	}
 
 	/*
@@ -108,13 +117,17 @@ public class HomePage extends GeneralLayout {
 		return obj;
 	}
 
-	private JPanel addBottom() {
+	private void drawBottom() {
 		JPanel bottom = new JPanel();
 		bottom.add(jUserNameTextField);
 		bottom.add(jPassword);
 		bottom.add(jLogin);
-		return bottom;
+		add(bottom);
+	}
 
+	@Override
+	public String[] defaultResultToBeDisplayed() {
+		return Tester.defaultManufacturersToBeDiplayed();
 	}
 
 }

@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.LayoutStyle;
 
 public abstract class GeneralLayout extends JFrame {
 
@@ -114,6 +113,10 @@ public abstract class GeneralLayout extends JFrame {
 		jOptionsPanel.add(jOptionsPanelRightComboBox);
 	}
 
+	public JPanel getjOptionsPanel() {
+		return jOptionsPanel;
+	}
+
 	public void drawCenter(String[] centerListData) {		
 		GroupLayout centerPanelLayout = new GroupLayout(jCenter);
 
@@ -166,12 +169,13 @@ public abstract class GeneralLayout extends JFrame {
 				optionsPanelRightComboBoxActionPerformed(evt);
 			}
 		});
-		jCenter.addMouseListener(new MouseAdapter() {
-			boolean uiOpen = false;
+		jCenterList.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent mouseEvent) {
-				if (mouseEvent.getClickCount() == 2) {
-					int index = jCenterList.locationToIndex(mouseEvent.getPoint());
-					if(index > 0 && !uiOpen) {
+				boolean uiOpen = false;
+				JList<String> list = (JList)mouseEvent.getSource();
+				if (mouseEvent.getClickCount() == 2) {					
+					int index = list.locationToIndex(mouseEvent.getPoint());
+					if(index >= 0 && !uiOpen) {
 						jOnDoubleClickListItemActionPerformed(jCenterList.getModel().getElementAt(index));
 						uiOpen = true;
 					}
@@ -206,6 +210,8 @@ public abstract class GeneralLayout extends JFrame {
 	 */
 	public abstract void jOnDoubleClickListItemActionPerformed(Object elementClicked);
 
+	public abstract String[] defaultResultToBeDisplayed();
+	
 	public JList<String> getjCenterList() {
 		return jCenterList;
 	}

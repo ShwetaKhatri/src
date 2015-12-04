@@ -7,77 +7,51 @@ import java.util.ArrayList;
  */
 public class Accessory {
 	
-    private SEAT_COVERS covers;
-    private SPEAKERS speaker;
-    private GPS gps;
-    private ArrayList<Accessory> accessories;
- 
+    private ACCESSORY_TYPE name;
+    private String type;
+    private double price;
+    private  ArrayList<Accessory> currentSelectedArrayList;
     
-    public Accessory(SEAT_COVERS seatCover, SPEAKERS carSpeaker, GPS carGps) {
-    	covers = seatCover;
-    	speaker = carSpeaker;
-    	gps = carGps;   
-    	accessories = new ArrayList<Accessory>();
+    public Accessory(ACCESSORY_TYPE name ,String type, double price) {
+    	this.name = name;
+    	this.type = type;
+    	this.price = price;
+    	currentSelectedArrayList = new ArrayList<>();
     }
 
-	
-	public enum SEAT_COVERS{
-		LEATHER(200),CANVAS(200),CAMO(150),MESH(80),NEOPRENE(200);
-		private int price;
-		SEAT_COVERS(int price) {
-			this.price = price;
-		}
-		public int getSeatCoverPrice() {
-			return price;
-		}
-	}
-	
-	public enum SPEAKERS {
-		TWEETERS(300), SUPER_TWEETERS(500), MIDRANGE(250), WOOFERS(500), SUB_WOOFERS(400);
-		private int price;
-		SPEAKERS(int price) {
-			this.price = price;
-		}
-		public int getSeatCoverPrice() {
-			return price;
-		}
+	public String getType() {
+		return type;
 	}
 
-	public enum GPS {
-		GARMIN_NUVI_SERIES(500),TOM_TOM_GO_SERIES(450),MAGELLAN_ROAD_MATE_SERIES(600),IN_DASH_GPS_UNIT(350);
-		private int price;
-		GPS(int price) {
-			this.price = price;
-		}
-		public int getSeatCoverPrice() {
-			return price;
-		}
+	public ACCESSORY_TYPE getName() {
+		return name;
 	}
 
-	public SEAT_COVERS getCovers() {
-		return covers;
+	public double getPrice() {
+		return price;
 	}
-
-	public SPEAKERS getSpeaker() {
-		return speaker;
-	}
-
-	public GPS getGps() {
-		return gps;
-	}
-	
-	public void setAccessories(ArrayList<Accessory> accessories) {
-		this.accessories = accessories;
-	}
-
-	public ArrayList<Accessory> getAccessories(){
-			return accessories;
+  
+	public void addTypes(String type, double price) {
 		
+	}
+	public void setCurrentSelectedAccessories(ArrayList<Accessory> currentSelectedArrayList) {
+		this.currentSelectedArrayList = currentSelectedArrayList;
+	}
+	
+	public ArrayList<Accessory>  getCurrentSelectedArrayList() {
+		return currentSelectedArrayList;
+	}
+	
+	public String[] getCurrentSelectedList() {
+		String[] items = new String[currentSelectedArrayList.size()];
+		for(int i = 0; i<currentSelectedArrayList.size();i++) {
+			items[i] = currentSelectedArrayList.get(i).toString();
+		}
+		return items;
 	}
 	
 	@Override
 	public String toString() {
-		return null;
-		
+		return "Type : " + type + " Price : " + price;
 	}
-}
+  }

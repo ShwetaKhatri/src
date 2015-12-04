@@ -1,0 +1,6 @@
+
+public enum ACCESSORY_TYPE {
+
+	SEAT_COVERS,GPS,SPEAKER
+
+}
