@@ -1,7 +1,9 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -11,21 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author David
- * @modified Shweta - Divided code into methods to make
+ *  Shweta - Divided code into methods to make
  * it more readable
  */
 public class HomepageUI extends JFrame {
-
 	
 	private static final long serialVersionUID = 1L;
 	/**
@@ -36,6 +31,7 @@ public class HomepageUI extends JFrame {
 		this.manufacturer = manufacturer;
 		this.priceRanges = priceRanges;	
 		this.defaultResultList = defaultResultList;
+		setVisible(true);
 		initComponents();
 	}
 
@@ -83,17 +79,6 @@ public class HomepageUI extends JFrame {
 	 */
 	private void addListeners() {
 		
-		/*jSearchButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jSearchButtonButtonActionPerformed(evt);
-			}
-		});*/
-		jUserNameTextField.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jUserNameTextField1ActionPerformed(evt);
-			}
-		});
-		
 		jManufacturerComboBox.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jManufacturerComboBoxActionPerformed(evt);
@@ -105,15 +90,29 @@ public class HomepageUI extends JFrame {
 				jPriceComboBoxActionPerformed(evt);
 			}
 		});
-		jResultList.addListSelectionListener(new ListSelectionListener() {
+		jResultList.addMouseListener(new MouseAdapter() {
+			boolean AccessoriesUIOpen = false;
+			  public void mouseClicked(MouseEvent mouseEvent) {
+			        if (mouseEvent.getClickCount() == 2) {
+			          int index = jResultList.locationToIndex(mouseEvent.getPoint());
+			          if (index >= 0 && !AccessoriesUIOpen) {
+			            Object o = jResultList.getModel().getElementAt(index);
+			            AccessoriesUI ui = new AccessoriesUI();
+			            ui.launchAccessoriesUI();
+			            AccessoriesUIOpen = true;
+			          }
+			        }
+			      }
+			    
+		});
+		jLogin.addActionListener(new ActionListener() {
 			
 			@Override
-			public void valueChanged(ListSelectionEvent evt) {
-				jResultListActionPerformed(evt);
-				
+			public void actionPerformed(ActionEvent e) {
+				 AdministratorUI ui = new AdministratorUI();				
+				 ui.launchUI();
 			}
 		});
-						
 	}
 	/*
 	 * @param selectedItem, name of Manufacturer selected 
@@ -333,21 +332,14 @@ public class HomepageUI extends JFrame {
 		}
 		repaint();
 	}//GEN-LAST:event_jComboBox2ActionPerformed
-
-	/*private void jSearchButtonButtonActionPerformed(ActionEvent evt) {//:event_jButton1ActionPerformed
-		// TODO add your handling code here:
-	}*///GEN-LAST:event_jButton1ActionPerformed
-
-	private void jUserNameTextField1ActionPerformed(ActionEvent evt) {//:event_jFormattedTextField1ActionPerformed
-		// TODO add your handling code here:
-	}//GEN-LAST:event_jFormattedTextField1ActionPerformed
 	
 	private void jResultListActionPerformed(ListSelectionEvent evt) {
-		
+		AccessoriesUI ui= new AccessoriesUI();
+		ui.launchAccessoriesUI();
 	}
 
 	/**
-	 * @param args the command line arguments
+	 * Launches the UI
 	 */
 	public void launchUI() {
 		/* Set the Nimbus look and feel */

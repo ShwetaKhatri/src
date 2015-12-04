@@ -6,7 +6,8 @@ public class Tester {
 			"HONDA","TOYOTA"};
 	private static final String[] priceRanges = {"10000-30000",
 			"30000-40000","40000-50000","All Ranges"};
-
+	
+	
 	private Manufacturer[] manufacturers;
 
 	public Tester() {
@@ -59,9 +60,9 @@ public class Tester {
 		Administrator admin = new Administrator();
 		admin.addCarsToManufacturersFromFile(test.getManufacturers());
 		HomepageUI  ui =  new HomepageUI(test.getManufacturers(), priceRanges,
-			test.defaultResultDisplayed());
-	
+			test.defaultResultDisplayed());	
 		ui.launchUI();		
+		
 
 	}
 
