@@ -59,7 +59,7 @@ public class Tester {
 		Tester test = new Tester();
 		Administrator admin = new Administrator();
 		admin.addCarsToManufacturersFromFile(test.getManufacturers());
-		HomepageUI  ui =  new HomepageUI(test.getManufacturers(), priceRanges,
+		HomePage  ui =  new HomePage(test.getManufacturers(), priceRanges,
 			test.defaultResultDisplayed());	
 		ui.launchUI();		
 		

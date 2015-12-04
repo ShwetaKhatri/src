@@ -5,7 +5,7 @@
 public class Car {
 
 	private double price;
-	private int mileage;
+	private int mpg;
 	private String modelName;
 	
 	/*
@@ -14,9 +14,9 @@ public class Car {
 	 * @param carMileage , mileage offered by the car
 	 * @param carModelName , Model Number of the Car
 	 */
-	public Car( String carModelName, Double carPrice,int carMileage) {
+	public Car( String carModelName, Double carPrice,int carMpg) {
 		price = carPrice;
-		mileage = carMileage;
+		mpg = carMpg;
 		modelName = carModelName;
 	}
 	
@@ -31,8 +31,8 @@ public class Car {
 	/*
 	 * @return mileage of this car object
 	 */
-	public int getMileage() {
-		return mileage;
+	public int getMPG() {
+		return mpg;
 	}
 
 	/*
@@ -45,7 +45,7 @@ public class Car {
 	@Override
 	public String toString() {
 		return "Modelname :" + modelName + ", Price:" + price +
-				", Mileage:" + mileage;
+				", MPG:" + mpg;
 	}
 	
 }
