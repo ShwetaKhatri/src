@@ -1,17 +1,15 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.Closeable;
-import java.util.ArrayList;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Popup;
-import javax.swing.PopupFactory;
 
+@SuppressWarnings("serial")
+/*
+ * This class helps in adding accessories to
+ * cars selected
+ */
 public class CustomizeCar extends GeneralLayout {
-
 
 	private JLabel jTotalCostLabel;
 	private JLabel jTotalCost;
@@ -29,47 +27,51 @@ public class CustomizeCar extends GeneralLayout {
 	private static final String TOP_RIGHT_LABEL = "Price:"; 
 
 
+	/*
+	 * @param namufactureName,name of Manufacturer whose car is being Customized
+	 * @param Car, car to be customized
+	 */
 	public CustomizeCar(String manufacturerName, Car car) {
-	
 		selectedCar = car;
 		SUB_TITLE = "You selected "+ manufacturerName + " " +selectedCar.toString() ;
 
 		jTotalCostLabel = new JLabel("Total Cost: ");
-		jTotalCost = new JLabel(String.valueOf(selectedCar.getPrice()));
-		jAddButton = new JButton("Add");
-		jAddButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-				jTotalCost.setText(String.valueOf(addedValue));
-				repaint();
-			}
-		});
-
+		jTotalCost = new JLabel(String.valueOf(selectedCar.getCarPrice()));
+		jAddButton = new JButton("Add");		
 		jBuyButton = new JButton("Buy");
-		jBuyButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Congratulations. You just bought a car!!");
-			}
-		});
 		jCancelButton = new JButton("Cancel");
-		jCancelButton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-			}
-		});
-
+		addListeners();
 		drawHeader(TITLE, SUB_TITLE);
 		drawTop(TOP_LEFT_LABEL, TOP_RIGHT_LABEL, getLeftComboBoxData(), getRightComboBoxData());
 		getjOptionsPanel().add(jAddButton);
 		drawCenter(defaultResultToBeDisplayed());
 		drawBottom();	
+	}
+
+	private void addListeners() {
+		jAddButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				jTotalCost.setText(String.valueOf(addedValue));
+				repaint();
+			}
+		});
+		jBuyButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BuyCarUI.launchUI();	
+			}
+		});
+		jCancelButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+
+			}
+		});
 	}
 
 	@Override
@@ -119,14 +121,21 @@ public class CustomizeCar extends GeneralLayout {
 		return Tester.defaultAccessoriesToBeDisplayed();
 	}
 
-	public double getPriceFromString(String currentItem) {
-		int startIndex = currentItem.lastIndexOf(":");
-		int endIndex = currentItem.length();
-		String price = currentItem.substring(startIndex+1, endIndex);
+	/*
+	 * @param stringRepresentationOfAccessory, toString() representation of accessory
+	 * @return price extracted from input
+	 */
+	public double getPriceFromString(String stringRepresentationOfAccessory) {
+		int startIndex = stringRepresentationOfAccessory.lastIndexOf(":");
+		int endIndex = stringRepresentationOfAccessory.length();
+		String price = stringRepresentationOfAccessory.substring(startIndex+1, endIndex);
 		Double p = Double.parseDouble(price);
 		return p;
 	}
-	private void drawBottom() {
+	
+	// Bottom part of Frame
+	@Override
+	public void drawBottom() {
 		JPanel bottom = new JPanel();
 		bottom.add(jTotalCostLabel);
 		bottom.add(jTotalCost);

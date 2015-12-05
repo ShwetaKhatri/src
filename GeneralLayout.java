@@ -1,5 +1,8 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
+/*
+ * @author Shweta
+ * Custom Components of Car website
+ */
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -18,6 +21,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+@SuppressWarnings("serial")
 public abstract class GeneralLayout extends JFrame {
 
 
@@ -113,10 +117,16 @@ public abstract class GeneralLayout extends JFrame {
 		jOptionsPanel.add(jOptionsPanelRightComboBox);
 	}
 
+	/*
+	 * @return jOptionsPanel, getter for jOptionsPanel
+	 */
 	public JPanel getjOptionsPanel() {
 		return jOptionsPanel;
 	}
 
+	/*
+	 * @param centerListData , data to be displayed in center panel
+	 */
 	public void drawCenter(String[] centerListData) {		
 		GroupLayout centerPanelLayout = new GroupLayout(jCenter);
 
@@ -145,6 +155,9 @@ public abstract class GeneralLayout extends JFrame {
 	}
 
 
+	/*
+	 * @param result, setter for jCenterList
+	 */
 	public void setCenterList(final String[] result) {
 		jCenterList.setModel(new AbstractListModel<String>() {
 			public int getSize() { return result.length; }
@@ -190,7 +203,7 @@ public abstract class GeneralLayout extends JFrame {
 	public abstract  String[] getLeftComboBoxData();
 
 	/*
-	 * @return data to e populated in right combo box
+	 * @return data to be populated in right combo box
 	 */
 	public abstract String[] getRightComboBoxData();
 
@@ -210,16 +223,33 @@ public abstract class GeneralLayout extends JFrame {
 	 */
 	public abstract void jOnDoubleClickListItemActionPerformed(Object elementClicked);
 
+	/*
+	 * When frame initializes provide default values to center Lists.
+	 */
 	public abstract String[] defaultResultToBeDisplayed();
 	
+	/*
+	 * Customize bottom part
+	 */
+	public abstract void drawBottom();
+	
+	/*
+	 * @return list, getter function for jCenterList
+	 */
 	public JList<String> getjCenterList() {
 		return jCenterList;
 	}
 
+	/*
+	 * @return Combo Box, getter for Left combo box
+	 */
 	public JComboBox<String> getjOptionsPanelLeftComboBox() {
 		return jOptionsPanelLeftComboBox;
 	}
 
+	/*
+	 * @return Combo Box, getter for right combo box
+	 */
 	public JComboBox<String> getjOptionsPanelRightComboBox() {
 		return jOptionsPanelRightComboBox;
 	}
@@ -255,7 +285,7 @@ public abstract class GeneralLayout extends JFrame {
 
 	/*
 	 * Wraps sub layouts in one layout that creates the overall
-	 * home page
+	 *  page
 	 */
 	private void wrapLayouts() {
 		setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));

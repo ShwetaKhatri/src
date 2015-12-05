@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Tester {
 
 	private static final String[]  manufacturerNames = {"BMW",
@@ -26,26 +23,26 @@ public class Tester {
 
 	public static void addAccessories() {
 		
-	 	accessories[0]= new Accessory(ACCESSORY_TYPE.SEAT_COVERS);
-	 	accessories[0].addTypes("CANVAS",200);
-		accessories[0].addTypes("CAMO",150);
-		accessories[0].addTypes("MESH",80);
-		accessories[0].addTypes("CAMO",150);
-		accessories[0].addTypes("NEOPRENE",200);
+	 	accessories[0]= new Accessory(ACCESSORY_NAME.SEAT_COVERS);
+	 	accessories[0].addAccessories("CANVAS",200);
+		accessories[0].addAccessories("CAMO",150);
+		accessories[0].addAccessories("MESH",80);
+		accessories[0].addAccessories("CAMO",150);
+		accessories[0].addAccessories("NEOPRENE",200);
 		
 		
-		accessories[1]=new Accessory(ACCESSORY_TYPE.SPEAKER);
-		accessories[1].addTypes("TWEETERS",300);
-		accessories[1].addTypes( "SUPER_TWEETERS",500);
-		accessories[1].addTypes("MIDRANGE",250);
-		accessories[1].addTypes( "WOOFERS",500);
-		accessories[1].addTypes( "SUB_WOOFERS",400);
+		accessories[1]=new Accessory(ACCESSORY_NAME.SPEAKER);
+		accessories[1].addAccessories("TWEETERS",300);
+		accessories[1].addAccessories( "SUPER_TWEETERS",500);
+		accessories[1].addAccessories("MIDRANGE",250);
+		accessories[1].addAccessories( "WOOFERS",500);
+		accessories[1].addAccessories( "SUB_WOOFERS",400);
 		
-		accessories[2] = new Accessory(ACCESSORY_TYPE.GPS);
-		accessories[2].addTypes("GARMIN_NUVI_SERIES",500);
-		accessories[2].addTypes("TOM_TOM_GO_SERIES",450);
-		accessories[2].addTypes("MAGELLAN_ROAD_MATE_SERIES",600);
-		accessories[2].addTypes("IN_DASH_GPS_UNIT",350);
+		accessories[2] = new Accessory(ACCESSORY_NAME.GPS);
+		accessories[2].addAccessories("GARMIN_NUVI_SERIES",500);
+		accessories[2].addAccessories("TOM_TOM_GO_SERIES",450);
+		accessories[2].addAccessories("MAGELLAN_ROAD_MATE_SERIES",600);
+		accessories[2].addAccessories("IN_DASH_GPS_UNIT",350);
 		
 
 	}

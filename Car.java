@@ -4,9 +4,9 @@
  */
 public class Car {
 
-	private double price;
-	private int mpg;
-	private String modelName;
+	private double carPrice;
+	private int carMpg;
+	private String carModelName;
 	
 	/*
 	 * @param carName, name of car
@@ -14,38 +14,38 @@ public class Car {
 	 * @param carMileage , mileage offered by the car
 	 * @param carModelName , Model Number of the Car
 	 */
-	public Car( String carModelName, Double carPrice,int carMpg) {
-		price = carPrice;
-		mpg = carMpg;
-		modelName = carModelName;
+	public Car( String modelName, Double price,int mpg) {
+		carPrice = price;
+		carMpg = mpg;
+		carModelName = modelName;
 	}
 	
 	/*
 	 * @return price of this car object
 	 */
 
-	public double getPrice() {
-		return price;
+	public double getCarPrice() {
+		return carPrice;
 	}
 
 	/*
 	 * @return mileage of this car object
 	 */
-	public int getMPG() {
-		return mpg;
+	public int getCarMPG() {
+		return carMpg;
 	}
 
 	/*
 	 * @return model Name of this car object
 	 */
-	public String getModelName() {
-		return modelName;
+	public String getCarModelName() {
+		return carModelName;
 	}
 	
 	@Override
 	public String toString() {
-		return "Modelname :" + modelName + ", Price:" + price +
-				", MPG:" + mpg;
+		return "Modelname :" + carModelName + ", Price:" + carPrice +
+				", MPG:" + carMpg;
 	}
 	
 }

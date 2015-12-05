@@ -92,6 +92,10 @@ public abstract class Manufacturer {
 		return cars;
 	}
 	
+	/*
+	 * @return array , stores string representation of cars
+	 * for manufacturer
+	 */
 	public String[] getCarsDetails() {
 		String[] details = new String[cars.size()];
 		int i = 0;
@@ -101,13 +105,19 @@ public abstract class Manufacturer {
 		return details;
 	}
 	
+	/*
+	 * @param startRange , Range from
+	 * @param endRange, Range to
+	 * @return array containing cars whose price lies between
+	 * start and end range, inclusive 
+	 */
 	public String[] getCarsInPriceRange(double startRange,double endRange) {
 		ArrayList<String> carsInRange = new ArrayList<String>(cars.size());
 		Car car;
 		for(int i = 0; i< cars.size(); i++) {
 			car = cars.get(i);
-			if(car.getPrice() >= startRange && 
-					car.getPrice() <= endRange) {
+			if(car.getCarPrice() >= startRange && 
+					car.getCarPrice() <= endRange) {
 				carsInRange.add(car.toString());
 			}
 		}

@@ -1,9 +1,15 @@
+import javax.swing.JOptionPane;
+
 /*
  * @author Shweta
- * UI launched when user clicks on a car in
- * result display window
+ * Launches message dialog box with provided message
  */
 public class BuyCarUI {
+	private final static String message = "Congratulations. You just bought a car!!";
 
+	public static void launchUI() {
+		JOptionPane.showMessageDialog(null, message);
+		
+	}
 	
 }

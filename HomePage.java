@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+/*
+ * @author Shweta
+ * Creates Homepage
+ */
 @SuppressWarnings("serial")
 public class HomePage extends GeneralLayout {
 
@@ -22,6 +25,12 @@ public class HomePage extends GeneralLayout {
 	private JButton jLogin;
 
 
+	/*
+	 * @param carManufacturer, Manufacturer to be displayed
+	 * in left combo box
+	 * @param prices, price ranges to be displayed in right combo
+	 * box
+	 */
 	public HomePage(Manufacturer[] carManufacturer, String[] prices) {
 		manufacturer = carManufacturer;
 		priceRanges = prices;
@@ -117,7 +126,8 @@ public class HomePage extends GeneralLayout {
 		return obj;
 	}
 
-	private void drawBottom() {
+	@Override
+	public void drawBottom() {
 		JPanel bottom = new JPanel();
 		bottom.add(jUserNameTextField);
 		bottom.add(jPassword);

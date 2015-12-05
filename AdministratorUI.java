@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import javax.swing.*;
 
 /**
  *
  * @author David
  */
+@SuppressWarnings("serial")
 public class AdministratorUI extends JFrame {
 
     /**
@@ -163,13 +159,13 @@ public class AdministratorUI extends JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-       //     java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+       // TODO     java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-        //    java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        // TODO   java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-         //   java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+         // TODO  java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-          //  java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+          //TODO  java.util.logging.Logger.getLogger(AdministratorUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
     }

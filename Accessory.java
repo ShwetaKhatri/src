@@ -1,55 +1,83 @@
 import java.util.ArrayList;
 
 /*
- * Represents some general accessories offered by car
- * manufacturers.Each manufacturer can set price of 
- * these accessories.
+ * @author Shweta
+ * Represents price and type of accessory
  */
 public class Accessory {
 	
-    private ACCESSORY_TYPE name;
-    private String type;
-    private double price;
-    private
-    ArrayList<String> currentSelectedArrayList;
+    private ACCESSORY_NAME accessoryName;
+    private String accessoryType;
+    private double accessoryPrice;
+    private ArrayList<String> accessories;
     
-    public Accessory(ACCESSORY_TYPE name) {
-    	this.name = name;
-    	currentSelectedArrayList = new ArrayList<>();
+    /*
+     * @param name, name of accessory of type ACCESSORY_NAME
+     */
+    public Accessory(ACCESSORY_NAME name) {
+    	this.accessoryName = name;
+    	accessories = new ArrayList<>();
     }
 
-	public String getType() {
-		return type;
+    /*
+     * @return type of accessory
+     */
+	public String getAccessoryType() {
+		return accessoryType;
 	}
 
-	public ACCESSORY_TYPE getName() {
-		return name;
+	/*
+	 * @return name of accessory
+	 */
+	public ACCESSORY_NAME getAccessoryName() {
+		return accessoryName;
 	}
 
-	public double getPrice() {
-		return price;
+	/*
+	 * @return price of accessory
+	 */
+	public double getAccessoryPrice() {
+		return accessoryPrice;
 	}
   
-	public void addTypes(String type, double price) {
-	  	this.type = type;
-    	this.price = price;
+	/*
+	 * @param type of accessory whose name is provided
+	 * by constructor
+	 * @param price of accessory whose name is provided 
+	 * by constructor
+	 * Adds type and price to array list that stores accessories
+	 * provided by ACCESSORY_NAME
+	 */
+	public void addAccessories(String type, double price) {
+	  	this.accessoryType = type;
+    	this.accessoryPrice = price;
 		String value = "Type :" + type + " Price :" + price;
-		currentSelectedArrayList.add(value);
+		accessories.add(value);
 	}
 	
+	/*
+	 * @return string array that stores types and prices
+	 * of accessoryName
+	 */
 	public String[] getAccessoriesDetails() {
-		String[] items = new String[currentSelectedArrayList.size()];
-		for(int i = 0; i<currentSelectedArrayList.size();i++) {
-			items[i] = currentSelectedArrayList.get(i);
+		String[] items = new String[accessories.size()];
+		for(int i = 0; i<accessories.size();i++) {
+			items[i] = accessories.get(i);
 		}
 		return items;
 	}
 	
+	/*
+	 * @param startRange , Range from
+	 * @param endRange, Range to
+	 * @return array containing cars whose price lies between
+	 * start and end range, inclusive 
+	 */
 	public String[] getAccessoryInPriceRange(Double startRange, Double endRange) {
 		ArrayList<String> accessoriesInRange = new ArrayList<>();
 		String currentItem;
-		for(int i = 0; i< currentSelectedArrayList.size();i++) {
-			currentItem = currentSelectedArrayList.get(i);
+		for(int i = 0; i< accessories.size();i++) {
+			currentItem = accessories.get(i);
 			double p = getPriceFromString(currentItem);
 			if(p >= startRange && p <= endRange) {
 				accessoriesInRange.add(currentItem);
@@ -65,16 +93,20 @@ public class Accessory {
 		return output;
 		
 	}
-	
-	public double getPriceFromString(String currentItem) {
-		int startIndex = currentItem.lastIndexOf(":");
-		int endIndex = currentItem.length();
-		String price = currentItem.substring(startIndex+1, endIndex);
+	/*
+	 * @param stringRepresentationOfAccessory, toString() representation of accessory
+	 * @return price extracted from input
+	 */
+	public double getPriceFromString(String stringRepresentationOfAccessory) {
+		int startIndex = stringRepresentationOfAccessory.lastIndexOf(":");
+		int endIndex = stringRepresentationOfAccessory.length();
+		String price = stringRepresentationOfAccessory.substring(startIndex+1, endIndex);
 		Double p = Double.parseDouble(price);
 		return p;
 	}
+	
 	@Override
 	public String toString() {
-		return "Type : " + type + " Price : " + price;
+		return "Type : " + accessoryType + " Price : " + accessoryPrice;
 	}
   }
