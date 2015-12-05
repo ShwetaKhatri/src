@@ -10,7 +10,8 @@ public class Accessory {
     private ACCESSORY_TYPE name;
     private String type;
     private double price;
-    private ArrayList<String> currentSelectedArrayList;
+    private
+    ArrayList<String> currentSelectedArrayList;
     
     public Accessory(ACCESSORY_TYPE name) {
     	this.name = name;
@@ -44,6 +45,34 @@ public class Accessory {
 		return items;
 	}
 	
+	public String[] getAccessoryInPriceRange(Double startRange, Double endRange) {
+		ArrayList<String> accessoriesInRange = new ArrayList<>();
+		String currentItem;
+		for(int i = 0; i< currentSelectedArrayList.size();i++) {
+			currentItem = currentSelectedArrayList.get(i);
+			double p = getPriceFromString(currentItem);
+			if(p >= startRange && p <= endRange) {
+				accessoriesInRange.add(currentItem);
+			}
+			else{
+				continue;
+			}			
+		}
+		String[] output = new String[accessoriesInRange.size()];
+		for(int i =0 ;i <accessoriesInRange.size();i++) {
+			output[i] = accessoriesInRange.get(i);
+		}
+		return output;
+		
+	}
+	
+	public double getPriceFromString(String currentItem) {
+		int startIndex = currentItem.lastIndexOf(":");
+		int endIndex = currentItem.length();
+		String price = currentItem.substring(startIndex+1, endIndex);
+		Double p = Double.parseDouble(price);
+		return p;
+	}
 	@Override
 	public String toString() {
 		return "Type : " + type + " Price : " + price;
